@@ -15,10 +15,22 @@
   },
   "plugins": [
     "import",
-    "unused-imports"
+    "unused-imports",
+    "prefer-arrow-functions"
   ],
   "rules": {
-    "@typescript-eslint/no-unused-vars": "off",
+    "unused-imports/no-unused-imports": "error",
+    "@typescript-eslint/no-unused-vars": "warn",
+    "import/no-default-export": "error",
+    "prefer-arrow-functions/prefer-arrow-functions": [
+      "warn",
+      {
+        "classPropertiesAllowed": false,
+        "disallowPrototype": false,
+        "returnStyle": "unchanged",
+        "singleReturnOnly": false
+      }
+    ],
     "import/order": [
       "error",
       {
@@ -61,35 +73,16 @@
           }
         ]
       }
-    ],
-    "unused-imports/no-unused-imports": "error"
+    ]
   },
   "overrides": [
     {
       "files": [
-        "**/*.ts",
-        "**/*.tsx"
+        "reportWebVitals.ts",
+        "**/theme/**"
       ],
-      "extends": [
-        "eslint:recommended",
-        "plugin:@typescript-eslint/recommended",
-        "prettier"
-      ],
-      "parser": "@typescript-eslint/parser",
-      "parserOptions": {
-        "ecmaFeatures": {
-          "jsx": true
-        },
-        "ecmaVersion": "latest",
-        "project": "./tsconfig.json"
-      },
-      "plugins": [
-        "@typescript-eslint"
-      ],
-      "settings": {
-        "react": {
-          "version": "detect"
-        }
+      "rules": {
+        "import/no-default-export": "off"
       }
     }
   ]
